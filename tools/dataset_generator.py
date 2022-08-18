@@ -178,6 +178,7 @@ def run(i, lock, task_index, variation_count, results, file_lock, tasks):
 
     obs_config = ObservationConfig()
     obs_config.set_all(True)
+    obs_config.gripper_touch_forces = False #nuevalinea
     obs_config.right_shoulder_camera.image_size = img_size
     obs_config.left_shoulder_camera.image_size = img_size
     obs_config.overhead_camera.image_size = img_size
@@ -207,6 +208,7 @@ def run(i, lock, task_index, variation_count, results, file_lock, tasks):
 
     rlbench_env = Environment(
         action_mode=MoveArmThenGripper(JointVelocity(), Discrete()),
+        robot_setup='icub',
         obs_config=obs_config,
         headless=True)
     rlbench_env.launch()
